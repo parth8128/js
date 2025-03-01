@@ -1,0 +1,185 @@
+# List of books
+books = [
+    {"title": "The Alchemist", "author": "Paulo Coelho", "member_Name": "Book Club India", "price": "499"},
+    {"title": "The Nightingale", "author": "Kristin Hannah", "member_Name": "Historical Fiction Lovers", "price": "599"},
+    {"title": "Rich Dad Poor Dad", "author": "Robert Kiyosaki", "member_Name": "Financial Literacy Group", "price": "395"},
+    {"title": "The 5 AM Club", "author": "Robin Sharma", "member_Name": "Productivity Enthusiasts", "price": "425"}
+]
+class Library: 
+    def __init__(self):  # Corrected constructor method
+        self.books = {} 
+        self.members = {}
+
+    def add_book(self, book_id, title, author,price):
+        self.books[book_id] = {'Title': title, 'Author': author,'Price':price}
+        print(f"Book '{title}' added successfully.")
+
+    def update_book(self, book_id, title=None, author=None,price=None):
+        if book_id in self.books:
+            if title:
+                self.books[book_id]['Title'] = title
+            if author:
+                self.books[book_id]['Author'] = author
+            if price:
+                self.books[book_id]['Price']=price
+            print(f"Book '{book_id}' updated successfully.")
+
+    def remove_book(self, book_id):
+        if book_id in self.books:
+            removed_book = self.books.pop(book_id)
+            print(f"Book '{removed_book['Title']}' removed successfully.")
+        else:
+            print("Book not found.")
+
+    def add_member(self, member_id, name):
+        self.members[member_id] = name
+        print(f"Member '{name}' added successfully.")
+
+    def update_member(self, member_id, name):
+        if member_id in self.members:
+            self.members[member_id] = name
+            print(f"Member '{member_id}' updated successfully.")
+        else:
+            print("Member not found.")
+
+    def remove_member(self, member_id):
+        if member_id in self.members:
+            removed_member = self.members.pop(member_id)
+            print(f"Member '{removed_member}' removed successfully.")
+        else:
+            print("Member not found.")
+
+    def menu(self):
+        while True:
+            print("\nLibrary Management System")
+            print("1. Add Book")
+            print("2. Update Book")
+            print("3. Remove Book")
+            print("4. Add Member")
+            print("5. Update Member")
+            print("6. Remove Member")
+            print("7. Exit")
+            choice = input("Enter your choice: ")
+            
+            if choice == '1':
+                book_id = input("Enter book ID: ")
+                title = input("Enter book title: ")
+                author = input("Enter author name: ")
+                self.add_book(book_id, title, author)
+            elif choice == '2':
+                book_id = input("Enter book ID: ")
+                title = input("Enter new title (or press enter to keep existing): ")
+                author = input("Enter new author (or press enter to keep existing): ")
+                self.update_book(book_id, title or None, author or None)
+            elif choice == '3':
+                book_id = input("Enter book ID: ")
+                self.remove_book(book_id)
+            elif choice == '4':
+                member_id = input("Enter member ID: ")
+                name = input("Enter member name: ")
+                self.add_member(member_id, name)
+            elif choice == '5':
+                member_id = input("Enter member ID: ")
+                name = input("Enter new name: ")
+                self.update_member(member_id, name)
+            elif choice == '6':
+                member_id = input("Enter member ID: ")
+                self.remove_member(member_id)
+            elif choice == '7':
+                print("Exiting Library Management System.")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    library = Library()
+    library.menu()
+
+
+# Function to add a new book
+def add_book(title, author, member_name, price):
+    books.append({"title": title, "author": author, "member_Name": member_name, "price": price})
+    print(f"\nBook '{title}' successfully added!")
+
+# Function to update book details
+def update_book(old_title, new_title=None, new_author=None, new_member_name=None, new_price=None):
+    for book in books:
+        if book["title"].title() == old_title.title():
+            if new_title:
+                book["title"] = new_title
+            if new_author:
+                book["author"] = new_author
+            if new_member_name:
+                book["member_Name"] = new_member_name
+            if new_price:
+                book["price"] = new_price
+            print(f"\nBook '{old_title}' successfully updated!")
+            return
+    print("\nBook not found!")
+
+# Function to remove a book
+def remove_book(title):
+    global books
+    books = [book for book in books if book["title"].title() != title.title()]
+    print(f"\nBook '{title}' successfully removed!")
+    
+
+# Function to search for a book
+def search_book(title, author):
+    for book in books:
+        if book["title"].title() == title.title() and book["author"].title() == author.title():
+            return f"Book Available:\nTitle: {book['title']}, Author: {book['author']}, Member_Name: {book['member_Name']}, Price: {book['price']}"
+    return "Book Not Available!"
+    
+#Display all booke
+def display():
+    if not books:
+        print("\nNo books available!")
+        return
+    
+    print("\nList of Available Books:")
+    for book in books:
+        print(f"Title: {book['title']}")
+        print(f"Author: {book['author']}")
+        print(f"Member Group: {book['member_Name']}")
+        print(f"Price: {book['price']}")
+        print("-" * 30)
+
+# User interaction menu
+while True:
+    print("\n1. Add Book\n2. Update Book\n3. Remove Book\n4. Display\n5. Search Book\n6. Exit")
+    choice = input("Enter your choice: ").strip()
+
+    if choice == "1":
+        title = input("Enter book title: ").strip()
+        author = input("Enter author: ").strip()
+        member_name = input("Enter member group: ").strip()
+        price = input("Enter price: ").strip()
+        add_book(title, author, member_name, price)
+
+    elif choice == "2":
+        old_title = input("Enter the book title to update: ").strip()
+        new_title = input("New Title (Optional): ").strip() or None
+        new_author = input("New Author (Optional): ").strip() or None
+        new_member_name = input("New Member Group (Optional): ").strip() or None
+        new_price = input("New Price (Optional): ").strip() or None
+        update_book(old_title, new_title, new_author, new_member_name, new_price)
+
+    elif choice == "3":
+        title = input("Enter the book title to remove: ").strip()
+        remove_book(title)
+        
+    elif choice == "4":
+        display()
+
+    elif choice == "5":
+        title = input("Enter book title: ").strip()
+        author = input("Enter author: ").strip()
+        print("\n" + search_book(title, author))
+    
+    elif choice == "6":
+        print("Exiting program...")
+        break
+
+    else:
+        print("Invalid choice! Please try again.")

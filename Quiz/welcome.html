@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+body {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background: linear-gradient(45deg, #ff7e5f, #97e77a); */
+    background-image: url(img.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.button
+{
+    width: 45%;
+    padding: 10px; 
+    background-color: #e05532fb;
+    border: none;
+    color: rgb(4, 4, 4);
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+button:hover {
+    background-color: #98ff8d;
+}
+
+.welcome-container {
+    text-align: center;
+}
+
+
+.welcome-text {
+    font-size: 80px;
+    color: rgb(3, 3, 3);
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(213, 26, 26, 0.701);
+    animation: fadeInSlide 2s ease-in-out;
+}
+.about{
+    color: rgb(35, 37, 39);
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(136, 81, 81, 0.701);
+    animation: fadeInSlide1 2s ease-in-out;
+}
+.info
+{
+    color: rgb(11, 12, 13);
+    font-size: 20px;
+    animation: fadeInSlide2 2s ease-in-out;
+    text-align: left;
+}
+.box
+{
+    background: white ;
+    padding: 30px;
+    border-radius: 10px;
+    color: aliceblue;
+    max-width: 1800px;
+    text-align: center;
+    box-shadow: 04px 8px rgba(0,0,0,0.2);
+}
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInSlide1 {
+    0% {
+        opacity: 0;
+        transform: translateY(80px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInSlide2 {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="box">
+    <div class="welcome-container">
+        <h1 class="welcome-text">Welcome to My Website</h1>
+        <p class="about">Quiz Game Terms & Conditions:</p>
+           <p class="info">1. The quiz is open to all eligible participants, entry is free.<br>
+            2. Each participant can attempt the quiz only once.<br>
+            3. Any form of cheating or rule violation will result in disqualification.<br>
+            4. The organizer reserves the right to modify rules or cancel the quiz at any time.<br>
+            5. Winners will be chosen based on accuracy and/or speed, as per the game rules.<br>
+            6. By participating, you agree to these terms and any decisions made by the organizer.</p>
+        <button class="button" onclick="openpage()">Start Quiz</button>
+    </div>
+</div>
+<script>
+    function openpage()
+    {
+        window.location.href = "select.html";
+    }
+</script>
+</body>
+</html>
